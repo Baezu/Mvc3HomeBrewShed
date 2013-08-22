@@ -1,0 +1,63 @@
+﻿
+@model Mvc3HomeBrewShed.Models.LogOnModel
+
+@{
+    ViewBag.Title = "Log On";
+}
+
+<h2>Log On</h2>
+<p>
+    Please enter your user name and password. @Html.ActionLink("Register", "Register") if you don't have an account.
+</p>
+
+@*Check if Password Question Answer is required*@ 
+@if(Membership.RequiresQuestionAndAnswer){
+    <p> 
+        If you have forgotten you password click @Html.ActionLink("here", "PasswordReset", "Account") to reset it.
+    </p>
+}
+else
+{
+    <p> 
+        If you have forgotten you password click @Html.ActionLink("here", "ForgotPassword", "Account") to reset it.
+    </p>
+}
+
+@using (Html.BeginForm(null, null, FormMethod.Post, new { @class = "form-horizontal" }))
+{
+    @Html.ValidationSummary(true, "Please correct the errors and try again.", new { @class = "text-danger" })
+    
+    <div class="well">
+        <fieldset>
+            <legend>Account Information</legend>
+
+            <div class="form-group">
+                <label for="inputUserName" class="col-lg-2 control-label">@Html.LabelFor(m => m.UserName)</label>
+                <div class="col-lg-10">                           
+                     @Html.TextBoxFor(m => m.UserName, new { @class = "form-control", placeholder = "Enter user name" })       
+                     @Html.ValidationMessageFor(m => m.UserName, null, new { @class = " col-lg-offset-2 col-lg-10 text-danger" })      
+                </div>         
+            </div> 
+
+            <div class="form-group">
+                <label for="inputPassword" class="col-lg-2 control-label">@Html.LabelFor(m => m.Password)</label>
+                <div class="col-lg-10">                           
+                     @Html.PasswordFor(m => m.Password, new { @class = "form-control", placeholder = "Enter Password" })       
+                     @Html.ValidationMessageFor(m => m.Password, null, new { @class = " col-lg-offset-2 col-lg-10 text-danger" })      
+                </div>         
+            </div> 
+                        
+            <div class="checkbox">
+                <label for="inputRememberMe" class="col-lg-2 control-label">&nbsp;</label>
+                <div class="col-lg-2">                           
+                     @Html.CheckBoxFor(m => m.RememberMe, new { @class = "checkbox" }) 
+                     <label for="inputRememberMe" class="control-label pull-left">@Html.LabelFor(m => m.RememberMe)</label>     
+                </div>         
+            </div>
+            <p>                
+                <button type="submit" class="btn-user btn-default">Log On</button>
+            </p>
+        </fieldset>
+    </div>
+}
+

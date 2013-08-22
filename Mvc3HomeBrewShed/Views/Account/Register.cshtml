@@ -1,0 +1,83 @@
+﻿@model Mvc3HomeBrewShed.Models.RegisterModel
+
+@{
+    ViewBag.Title = "Register";
+}
+
+<h2>Create a New Account</h2>
+<p>
+    Use the form below to create a new account. 
+</p>
+<p>
+    Passwords are required to be a minimum of @Membership.MinRequiredPasswordLength characters in length.
+</p>
+
+@using (Html.BeginForm(null, null, FormMethod.Post, new { @class = "form-horizontal" })) {
+    @Html.ValidationSummary(true, "Please correct the errors and try again.", new { @class = "text-danger" })
+    <div class="well">
+        <fieldset>
+            <legend>Account Information</legend>
+
+            <div class="form-group">
+                <label for="inputUserName" class="col-lg-2 control-label">@Html.LabelFor(m => m.UserName)</label>
+                <div class="col-lg-10">                           
+                     @Html.TextBoxFor(m => m.UserName, new { @class = "form-control", placeholder = "Enter user name" })       
+                     @Html.ValidationMessageFor(m => m.UserName, null, new { @class = " col-lg-offset-2 col-lg-10 text-danger" })      
+                </div>         
+            </div>
+
+            <div class="form-group">
+                <label for="inputEmail" class="col-lg-2 control-label">@Html.LabelFor(m => m.Email)</label>
+                <div class="col-lg-10">                           
+                     @Html.TextBoxFor(m => m.Email, new { @class = "form-control", placeholder = "Enter email address" })       
+                     @Html.ValidationMessageFor(m => m.Email, null, new { @class = " col-lg-offset-2 col-lg-10 text-danger" })      
+                </div>                    
+            </div>
+            
+
+            @if(@Membership.RequiresQuestionAndAnswer)
+            {
+             <div class="form-group">
+                <label for="inputPasswordQuestion" class="col-lg-2 control-label">@Html.LabelFor(m => m.PasswordQuestion)</label>
+                <div class="col-lg-10">                           
+                     @Html.TextBoxFor(m => m.PasswordQuestion, new { @class = "form-control", placeholder = "Enter password question" })       
+                     @Html.ValidationMessageFor(m => m.PasswordQuestion, null, new { @class = " col-lg-offset-2 col-lg-10 text-danger" })      
+                </div>                    
+            </div>
+            <div class="form-group">
+                <label for="inputPasswordAnswer" class="col-lg-2 control-label">@Html.LabelFor(m => m.PasswordAnswer)</label>
+                <div class="col-lg-10">                           
+                     @Html.TextBoxFor(m => m.PasswordAnswer, new { @class = "form-control", placeholder = "Enter password question answer" })       
+                     @Html.ValidationMessageFor(m => m.PasswordAnswer, null, new { @class = " col-lg-offset-2 col-lg-10 text-danger" })      
+                </div>                    
+            </div> 
+            }
+
+            <div class="form-group">
+                <label for="inputPassword" class="col-lg-2 control-label">@Html.LabelFor(m => m.Password)</label>
+                <div class="col-lg-10">                           
+                     @Html.PasswordFor(m => m.Password, new { @class = "form-control", placeholder = "Enter Password" })       
+                     @Html.ValidationMessageFor(m => m.Password, null, new { @class = " col-lg-offset-2 col-lg-10 text-danger" })      
+                </div>         
+            </div>
+
+            <div class="form-group">
+                <label for="inputConfirmPassword" class="col-lg-2 control-label">@Html.LabelFor(m => m.ConfirmPassword)</label>
+                <div class="col-lg-10">                           
+                     @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control", placeholder = "Confirm Password" })       
+                     @Html.ValidationMessageFor(m => m.ConfirmPassword, null, new { @class = " col-lg-offset-2 col-lg-10 text-danger" })      
+                </div>         
+            </div>
+
+            <p>                
+                <button type="submit" class="btn-user btn-default">Register</button>
+            </p>         
+
+
+           
+        </fieldset>
+    </div>
+}
+
+
+

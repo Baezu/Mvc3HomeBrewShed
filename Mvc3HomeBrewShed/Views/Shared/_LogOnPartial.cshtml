@@ -1,0 +1,28 @@
+﻿
+
+
+<div class="nav-collapse collapse">
+@if(Request.IsAuthenticated) {
+    <ul class="nav navbar-nav pull-right">     
+       @* <li> @Html.ActionLink("Log Off", "LogOff", "Account")</li>*@
+       <li><a href="/Account/LogOff"><i class="glyphicon glyphicon-ok-circle"></i> Log Off</a></li>        
+    </ul>
+    
+    <p class="navbar-text pull-right">
+        Welcome <strong>@User.Identity.Name</strong>!        
+    </p> 
+}
+else
+{
+    <ul class="nav navbar-nav pull-right">
+        <li><a href="/Account/Register"><i class="glyphicon glyphicon-lock"></i> Register</a></li>
+        <li><a href="/Account/LogOn"><i class="glyphicon glyphicon-remove-circle"></i> Log On</a></li>
+        
+        @*<li>@Html.ActionLink("Register", "Register", "Account")</li>        
+        <li>@Html.ActionLink("Log On", "LogOn", "Account")</li>
+        <li>@Html.ActionLink("Log On", "LogOn", "SGAccount")</li>*@
+    </ul>
+}
+</div>
+
+

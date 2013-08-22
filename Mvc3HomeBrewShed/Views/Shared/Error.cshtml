@@ -1,0 +1,19 @@
+﻿@model System.Web.Mvc.HandleErrorInfo
+
+@{
+    ViewBag.Title = "Error";
+}
+
+<h2>
+    Sorry, an error occurred while processing your request.
+</h2>
+
+@if (HttpContext.Current.IsDebuggingEnabled)
+{
+    // Debug mode enabled in Web.config.
+    //<compilation debug="true" targetFramework="4.0">
+    <p>Controller Name: @Model.ControllerName</p>
+    <p>Action Name : @Model.ActionName</p>
+    <p>Message: @Model.Exception.Message</p>
+}
+

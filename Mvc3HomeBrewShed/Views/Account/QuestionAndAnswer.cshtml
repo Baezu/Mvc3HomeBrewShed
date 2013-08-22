@@ -1,0 +1,56 @@
+﻿@model Mvc3HomeBrewShed.Models.QuestionAndAnswerModel
+
+@{
+    ViewBag.Title = "Question and Answer";
+}
+
+<h2>Password Reset</h2>
+<p>
+    Answer your security question below and click Reset Password 
+</p>
+
+@using (Html.BeginForm(null, null, FormMethod.Post, new { @class = "form-horizontal" }))
+{    
+   @Html.ValidationSummary(true, "Please correct the errors and try again.", new { @class = "text-danger" })
+     <div class="well">
+        <fieldset>
+            <legend>Password Recovery Question</legend>
+            @Html.HiddenFor(m => m.PasswordQuestion)
+            @Html.HiddenFor(m => m.UserName)
+
+            <div class="form-group">
+                <label for="inputUserName" class="col-lg-4 control-label">@Html.LabelFor(m => m.UserName)</label>
+                <div class="col-lg-6">                           
+                    <label for="inputUserName" class="control-label pull-left">@Html.DisplayFor(m => m.UserName)</label>
+                </div>         
+            </div> 
+    
+            <div class="form-group">
+                <label for="inputPasswordQuestion" class="col-lg-4 control-label">@Html.LabelFor(m => m.PasswordQuestion)</label>
+                <div class="col-lg-6">                           
+                    <label for="inputPasswordQuestion" class="control-label pull-left">@Html.DisplayFor(m => m.PasswordQuestion)</label>
+                </div>         
+            </div> 
+    
+            <div class="form-group">
+                <label for="inputPasswordAnswer" class="col-lg-4 control-label">@Html.LabelFor(m => m.PasswordAnswer)</label>
+                <div class="col-lg-6">                           
+                     @Html.TextBoxFor(m => m.PasswordAnswer, new { @class = "form-control", placeholder = "Enter password question answer." })       
+                     @Html.ValidationMessageFor(m => m.PasswordAnswer, null, new { @class = " col-lg-offset-2 col-lg-10 text-danger" })      
+                </div>         
+            </div> 
+
+             <p>                
+                <button type="submit" class="btn-user btn-default">Reset Password <i class="glyphicon glyphicon-chevron-right"></i></button>
+            </p> 
+
+
+
+@*
+            <div class="input-block-level">&nbsp;</div>
+            <p>
+                <input class="btn btn-success" type="submit" value="Reset Password" />
+            </p>*@
+        </fieldset>
+    </div>    
+}

@@ -1,0 +1,37 @@
+﻿<div class="nav-collapse collapse">
+@if(Request.IsAuthenticated) {
+    <ul class="nav navbar-nav">
+        <li><a href="/Home"><i class="glyphicon glyphicon-home"></i> Home</a></li>               
+        @if (User.Identity.IsAuthenticated)
+        {              
+        <li class="dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                <i class="glyphicon glyphicon-user"></i> User <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu">
+              <li><a href="/Account/ChangePassword"><i class="glyphicon glyphicon-lock"></i> Change Password</a></li>
+              
+              <li>@Html.ActionLink("Password Reset", "PasswordReset", "Account")</li>
+            </ul>
+        </li>
+        }
+        
+        <li><a href="/Home/About"><i class="glyphicon glyphicon-info-sign"></i> About</a></li>
+        
+        @if (User.IsInRole("SecurityGuard"))
+        {
+            @*<li>@Html.ActionLink("Security Guard", "Index", "Dashboard", new { area = "SecurityGuard" }, null)</li>*@
+            <li><a href="/SecurityGuard"><i class="glyphicon glyphicon-cog"></i> Admin</a></li>
+        }
+    </ul>
+   
+}
+else
+{
+    <ul class="nav navbar-nav">
+        <li><a href="/Home"><i class="glyphicon glyphicon-home"></i> Home</a></li>
+        <li><a href="/Home/About"><i class="glyphicon glyphicon-info-sign"></i> About</a></li> 
+           
+    </ul>
+}
+</div>
