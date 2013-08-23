@@ -7,6 +7,8 @@ namespace Mvc3HomeBrewShed.Utils
 {
     public static class General
     {
+       //-- added from asus-ltop
+
         /// <summary>
         /// GenerateHumanFriendlyPassword
         /// </summary>
